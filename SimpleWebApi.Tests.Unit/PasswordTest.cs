@@ -8,9 +8,9 @@ namespace SimpleWebApi.Tests.Unit
     public class PasswordTest
     {
         [Fact]  
-        public void WhenbuildingTheInstanceThrowsADomainExceptionWhenValueIsEmptyOrNull()
+        public void WhenbuildingTheInstanceThrowsADomainExceptionWhenValueIsNull()
         {
-            Assert.Throws<DomainException>(() => new Password(""));
+            Assert.Throws<DomainException>(() => new Password(null));
         }
         
         [Fact]
@@ -28,6 +28,25 @@ namespace SimpleWebApi.Tests.Unit
             var password = new Password(passwordValue);
             
             Assert.Equal(passwordValue, password.Value);
+        }
+        
+        [Theory]
+        [InlineData("", false)]
+        [InlineData("aa", false)]
+        [InlineData("ab", false)]
+        [InlineData("AAAbbbCc", false)]
+        [InlineData("AbTp9!foo", false)]
+        [InlineData("AbTp9!foA", false)]
+        [InlineData("AbTp9 fok", false)]
+        [InlineData("AbTp9!fok", true)]
+        [InlineData("AbTp9!fokzx", true)]
+        public void ValidateMethodReturnsTheCorrectResult(string passwordValue, bool expectedValue)
+        {
+            var password = new Password(passwordValue);
+
+            var isValid = password.Validate();
+            
+            Assert.Equal(expectedValue, isValid);
         }
     }
 }
