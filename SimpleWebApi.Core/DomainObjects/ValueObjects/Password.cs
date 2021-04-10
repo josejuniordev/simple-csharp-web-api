@@ -6,17 +6,17 @@ namespace SimpleWebApi.Core.DomainObjects.ValueObjects
 {
     public class Password
     {
-        private string _value;
+        public string Value { get; }
 
         public Password(string value)
         {
             if (string.IsNullOrEmpty(value))
                 throw new DomainException("A senha não pode ser vazia");
             
-            _value = value;
+            Value = value;
         }
 
-        public bool IsValid()
+        public bool Validate()
         {
             return false;
         }

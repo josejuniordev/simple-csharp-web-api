@@ -12,5 +12,22 @@ namespace SimpleWebApi.Tests.Unit
         {
             Assert.Throws<DomainException>(() => new Password(""));
         }
+        
+        [Fact]
+        public void WhenbuildingTheInstanceDontThrowsADomainExceptionWhenValueIsFilled()
+        {
+            var password = new Password("minhaSenha");
+            
+            Assert.IsType<Password>(password);
+        }
+        
+        [Fact]
+        public void TheCreatedInstanceHasTheReceivedValue()
+        {
+            var passwordValue = "minhaSenha";
+            var password = new Password(passwordValue);
+            
+            Assert.Equal(passwordValue, password.Value);
+        }
     }
 }
