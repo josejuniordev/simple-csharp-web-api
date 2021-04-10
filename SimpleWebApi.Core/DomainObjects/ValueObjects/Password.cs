@@ -32,6 +32,11 @@ namespace SimpleWebApi.Core.DomainObjects.ValueObjects
             return !HasMultipleOcurrencesOfTheSameChar();
         }
 
+        public override string ToString()
+        {
+            return Value;
+        }
+
         private bool HasMultipleOcurrencesOfTheSameChar()
         {
             var chars = Value.ToCharArray();
@@ -47,5 +52,19 @@ namespace SimpleWebApi.Core.DomainObjects.ValueObjects
 
             return hasMultipleCharOccurrence;
         }
+
+        #region Conversion
+        public static implicit operator string(Password value)
+        {
+            return value.Value;
+        }
+        
+        public static implicit operator Password(string value)
+        {
+            return new (value);
+        }
+        
+
+        #endregion
     }
 }

@@ -8,13 +8,13 @@ namespace SimpleWebApi.Tests.Unit
     public class PasswordTest
     {
         [Fact]  
-        public void WhenbuildingTheInstanceThrowsADomainExceptionWhenValueIsNull()
+        public void CtorThrowsADomainExceptionWhenCalledWithNullAsArgument()
         {
             Assert.Throws<DomainException>(() => new Password(null));
         }
         
         [Fact]
-        public void WhenbuildingTheInstanceDontThrowsADomainExceptionWhenValueIsFilled()
+        public void CtorCreatesAnInstanceWhenCalledWithFilledArgument()
         {
             var password = new Password("minhaSenha");
             
@@ -47,6 +47,27 @@ namespace SimpleWebApi.Tests.Unit
             var isValid = password.Validate();
             
             Assert.Equal(expectedValue, isValid);
+        }
+
+        [Fact]
+        public void CustomSetOperatorWorks()
+        {
+            var passwordValue = "minhasenha";
+            
+            Password password = passwordValue;
+
+            Assert.Equal(passwordValue, password.Value);            
+        }
+        
+        [Fact]
+        public void CustomGetOperatorWorks()
+        {
+            var passwordValue = "minhasenha";
+            
+            var passwordInstance = new Password(passwordValue);
+            string strPassword = passwordInstance;
+
+            Assert.Equal(passwordValue, strPassword);            
         }
     }
 }
