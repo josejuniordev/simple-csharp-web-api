@@ -3,7 +3,7 @@ using SimpleWebApi.Core.DomainObjects.Exceptions;
 using SimpleWebApi.Core.DomainObjects.ValueObjects;
 using Xunit;
 
-namespace SimpleWebApi.Tests.Unit
+namespace SimpleWebApi.Tests.Unit.Core.DomainObjects.ValueObjects
 {
     public class PasswordTest
     {
@@ -68,6 +68,16 @@ namespace SimpleWebApi.Tests.Unit
             string strPassword = passwordInstance;
 
             Assert.Equal(passwordValue, strPassword);            
+        }
+        
+        [Fact]
+        public void ToStringReturnsPasswordValue()
+        {
+            var passwordValue = "minhasenha";
+            
+            var passwordInstance = new Password(passwordValue);
+
+            Assert.Equal(passwordValue, passwordInstance.ToString());            
         }
     }
 }
