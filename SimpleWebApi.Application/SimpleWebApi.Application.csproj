@@ -9,7 +9,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Controllers" />
+      <ProjectReference Include="..\SimpleWebApi.Core\SimpleWebApi.Core.csproj" />
     </ItemGroup>
 
 </Project>
