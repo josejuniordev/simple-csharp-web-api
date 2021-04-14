@@ -5,6 +5,9 @@
 A partir do terminal, navegue para a pasta _SimpleWebApi.Application_ e rode `dotnet run`. Após isso acesse _https://localhost:5001/swagger/index.html_ em seu navegador.
 Você pode também rodar o projeto através de sua IDE preferida.
 
+## Metodologia
+O projeto foi desenvolvido usando TDD.
+
 ## Arquitetura Escolhida
 Analisando o projeto, entendi que este poderia ser um microserviço ou a parte de um outro sistema maior, responsável pela parte de autenticação (crud de usuários, login, etc). Assim, escolhi usar uma arquitetura adaptada que nos fornece uma boa organização e separação de responsabilidades, uma arquitetura baseada no Clean Architecture, com algumas camadas.
 Abaixo irei descreve-las.
